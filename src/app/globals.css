@@ -16,7 +16,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --testcolor1: #0A29FF;
+    --testcolor1: #5482ff;
     --testcolor2: #A6C8FF;
     --testcolor3: #06011b;
     --testcolor4: #FF9FFC;
@@ -35,4 +35,18 @@ body {
   border: 4px solid #b18c3a1f;
   border-radius: 25px;
   box-shadow: inset -2px 0px 11px 5px #81807240;
+}
+
+.qualification_title{
+  width: 100%;
+  max-width: fit-content;
+  height: 100%;
+  /* background: url('./component/text_bg01.jpg'); */
+  background: #ffffff;
+background: linear-gradient(50deg,rgba(255, 255, 255, 1) 32%, rgba(160, 186, 219, 1) 65%, rgba(31, 102, 255, 1) 81%, rgba(34, 7, 242, 1) 97%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

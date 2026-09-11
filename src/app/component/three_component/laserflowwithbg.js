@@ -1,19 +1,19 @@
 'use client';
- 
+
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import LaserFlow from '../laserflow';
-import sampleImage from '@/app/component/three_component/biswas.jpg';
+import sampleImage from '@/app/component/three_component/biswasBanner.jpg';
 import { gsap } from "gsap";
-    
+
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollTrigger,SplitText);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 
 const REVEAL_MASK =
-  'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,0.9) 0px, rgba(255,255,255,0.95) 60px, rgba(255,255,255,0.6) 120px, rgba(255,255,255,0.25) 180px, rgba(255,255,255,0) 240px)';
+  'radial-gradient(circle at var(--mx) var(--my), rgba(255,255,255,1) 0px, rgba(255,255,255,0.65) 60px, rgba(255,255,255,0.5) 120px, rgba(255,255,255,0.1) 180px, rgba(255,255,255,0.05) 240px)';
 
 export default function LaserFlowBoxExample() {
   const revealImgRef = useRef(null);
@@ -23,7 +23,7 @@ export default function LaserFlowBoxExample() {
     const el = revealImgRef.current;
     if (el) {
       el.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-      el.style.setProperty('--my', `${e.clientY - rect.top}px`); 
+      el.style.setProperty('--my', `${e.clientY - rect.top}px`);
     }
   };
 
@@ -34,11 +34,11 @@ export default function LaserFlowBoxExample() {
       el.style.setProperty('--my', '-9999px');
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
 
-    const split = new SplitText('.spiralText', { 
-      type: "chars, lines" ,
-      linesClass:"cursor-target"
+    const split = new SplitText('.spiralText', {
+      type: "chars, lines",
+      linesClass: "cursor-target"
     });
     gsap.timeline({
       scrollTrigger: {
@@ -49,31 +49,33 @@ export default function LaserFlowBoxExample() {
         // markers: true
       }
     })
-    .from(split.chars, {
-      rotationX: 270, 
-      opacity: 1,
-      duration: 1,
-      stagger: 0.05,
-      ease: "power2.out"
-    });
-  },[])
-   
+      .from(split.chars, {
+        rotationX: 270,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.05,
+        ease: "power2.out"
+      });
+  }, [])
+
 
   return (
     <div
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
       style={{
+        width: '100%',
         height: '800px',
         position: 'relative',
         overflow: 'hidden',
-        backgroundColor: '#120F17'
+        backgroundColor: '#5482ff',
+
       }}
     >
       <LaserFlow
         horizontalBeamOffset={0.3}
         verticalBeamOffset={0.0}
-        color="#CF9EFF"
+        color="#2d4cff"
       />
 
       <div
@@ -83,14 +85,16 @@ export default function LaserFlowBoxExample() {
           right: '0',
           width: '86%',
           height: '50%',
-          padding:'5%',
-          backgroundColor: 'rgba(2,2,2,0.7)',
+          padding: '5%',
+          background: `linear-gradient(0deg, #cfcfff, #00005f)`,
+          backgroundSize:'100% 100%',
           borderRadius: '20px',
-          border: '2px solid #FF79C6',
+          border: '2px solid rgba(233,233,233,1)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          zIndex: 6
+          zIndex: 1,
+          overflow: 'hidden'
         }}
       >
         <p className="spiralText w-full text-[clamp(16px,3vw,42px)]">
@@ -99,13 +103,16 @@ export default function LaserFlowBoxExample() {
           punctual, quick learner and deadline-oriented person who can work under pressure and
           able to solve problems analytically with latest technologies in minimal supervision
         </p>
+
+        
+      <div className='absolute inset-0 z-[-1] bg-[blue]/50'></div>
       </div>
 
       <Image
         ref={revealImgRef}
         src={sampleImage}
         alt="Reveal effect"
-        fill 
+        fill
         sizes="100vw"
         style={{
           zIndex: 5,

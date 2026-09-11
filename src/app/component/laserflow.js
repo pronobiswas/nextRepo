@@ -245,19 +245,19 @@ export const LaserFlow = ({
   mouseSmoothTime = 0.0,
   mouseTiltStrength = 0.01,
   horizontalBeamOffset = 0.1,
-  verticalBeamOffset = 0.0,
-  flowSpeed = 0.35,
+  verticalBeamOffset = 0.01,
+  flowSpeed = 0.5,
   verticalSizing = 2.0,
   horizontalSizing = 0.5,
   fogIntensity = 0.45,
   fogScale = 0.3,
   wispSpeed = 15.0,
-  wispIntensity = 5.0,
+  wispIntensity = 10.5,
   flowStrength = 0.25,
   decay = 1.1,
-  falloffStart = 1.2,
-  fogFallSpeed = 0.6,
-  color = '#FF79C6',
+  falloffStart = 1.5,
+  fogFallSpeed = 1.6,
+  color = '#65adff',
   backgroundColor = '#000000'
 }) => {
   const mountRef = useRef(null);
@@ -283,6 +283,7 @@ export const LaserFlow = ({
         .map(x => x + x)
         .join('');
     const n = parseInt(c.slice(0, 6), 16) || 0xffffff;
+    console.log(n)
     return { r: ((n >> 16) & 255) / 255, g: ((n >> 8) & 255) / 255, b: (n & 255) / 255 };
   };
 
@@ -370,6 +371,7 @@ export const LaserFlow = ({
     scene.add(mesh);
 
     const clock = new THREE.Clock();
+    let startTime = performance.now();
     let prevTime = 0;
     let fade = hasFadedRef.current ? 1 : 0;
 
