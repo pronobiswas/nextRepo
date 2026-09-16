@@ -9,6 +9,7 @@ import DirectionalScrollCard from './directional_scroll_card'
 import LaserFlowBoxExample from './three_component/laserflowwithbg'
 import Qualification_commponent from './qualification_commponent'
 import HexagonVideo from './hexagonanimation'
+import ButtonSection from "./cofee_section";
 // import LaserFlow from './laserflow'
 
 
@@ -24,9 +25,10 @@ const TargetCursor = dynamic(
 const Maincomponent = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [textColor, setTextColor] = useState('#000000');
 
 
-        useEffect(() => {
+    useEffect(() => {
         const getUsers = async () => {
             try {
                 const response = await fetch("/api/user");
@@ -45,11 +47,14 @@ const Maincomponent = () => {
 
         getUsers();
     }, []);
+   
+
+
 
 
 
     return (
-        <div className='w-full h-full bg-black'>
+        <div className='w-full h-full'>
             <div>
                 <TargetCursor
                     targetSelector=".cursor-target"
@@ -57,18 +62,19 @@ const Maincomponent = () => {
                     hideDefaultCursor={true}
                     hoverDuration={0.2}
                     parallaxOn={true}
-                    cursorColor="#ffffff"
-                    cursorColorOnTarget="#ffffff"
+                    cursorColor={textColor}
+                    cursorColorOnTarget={textColor}
                 />
                 <div id="targetsContainer" >
                     <Banner />
-                    <DirectionalScrollCard/>
+                    <ButtonSection heading="I am passionate about my work with dedication. I focus on my work with research, academics and developing skills. I consider myself as a self-motivated, responsible, punctual, quick learner and deadline-oriented person who can work under pressure and able to solve problems analytically with latest technologies in minimal supervision" />
+                    <DirectionalScrollCard />
                     {/* <LaserFlow/>  */}
-                    <LaserFlowBoxExample/>
-                    <Qualification_commponent/>
+                    <LaserFlowBoxExample />
+                    <Qualification_commponent />
                 </div>
             </div>
-            <HexagonVideo/>
+            <HexagonVideo />
         </div>
     )
 }

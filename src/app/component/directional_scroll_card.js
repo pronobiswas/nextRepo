@@ -247,8 +247,7 @@ const DirectionalScrollCard = () => {
 
     return (
         <section
-            id="banner"
-            className="overflow-x-hidden p-5"
+            className="w-full bg-[var(--bg-color)] overflow-x-hidden p-5"
         >
             <div className="mx-auto w-full">
 
@@ -283,10 +282,10 @@ const DirectionalScrollCard = () => {
                                                 justify-center
                                                 rounded-2xl
                                                 border-2
-                                                border-white/20
+                                                border-gray-400
                                                 p-5
                                                 text-center
-                                                text-white
+                                                text-[var(--text-color)]
                                                 cursor-target
                                             "
                                         >

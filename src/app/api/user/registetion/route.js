@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { databaseConnection } from "@/db/dbconnection";
 import User from "@/model/user.model";
-import { hashPassword, isValidEmail, isValidPassword } from "@/helpers/userhelper";
-
+import { sendWelcomeEmail } from "@/helpers/mailsender";
 
 export async function POST(request) {
     try {
@@ -30,26 +29,6 @@ export async function POST(request) {
             );
         }
 
-        if(!isValidEmail(email)){
-            return NextResponse.json(
-                {
-                    success: false,
-                    message: "invalid email",
-                },
-                { status: 400 }
-            );
-        }
-         if(!isValidPassword(password)){
-            return NextResponse.json(
-                {
-                    success: false,
-                    message: "All fields are required",
-                },
-                { status: 400 }
-            );
-        }
-        const hashedPassword = await hashPassword(password);
-
         const existingUser = await User.findOne({ email });
          if (existingUser) {
             return NextResponse.json(
@@ -67,9 +46,13 @@ export async function POST(request) {
             firstName,
             lastName,
             email,
-            password:hashedPassword,
+            password,
         });
-        if(user){console.log(user)}
+        if(user){
+            await sendWelcomeEmail(email,firstName);
+            console.log(user)
+            console.log("mail sent")
+        }
 
         return NextResponse.json(
             {

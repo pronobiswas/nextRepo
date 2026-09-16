@@ -27,20 +27,20 @@ const Banner = () => {
             // Animate characters
             splits.forEach((split) => {
                 gsap.from(split.lines, {
-                    y: 150,
+                    yPercent: 150,
                     duration: 0.8,
                     stagger: 0.06,
                     ease: 'power3.out',
                 });
             });
             gsap.to('.fromLeft', {
-                x: '-100%',
+                xPercent: '-100%',
                 duration: 1,
                 ease: 'power3.out',
                 delay:0.5
             });
             gsap.to('.fromRight', {
-                x: '100%',
+                xPercent: '100%',
                 duration: 1,
                 ease: 'power3.out',
                 delay:0.5
@@ -54,8 +54,8 @@ const Banner = () => {
     }, []);
 
     return (
-        <section className="w-full p-5">
-            <div ref={bannerRef} className="text-white">
+        <section className="w-full p-5 bg-[var(--bg-color)]">
+            <div ref={bannerRef} className=" text-[var(--text-color)]">
 
                 {/* First Heading */}
                 <div className="w-full border-b border-white overflow-hidden relative">
