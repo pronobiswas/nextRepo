@@ -2,10 +2,12 @@ import { NextResponse } from "next/server";
 import { databaseConnection } from "@/db/dbconnection";
 import User from "@/model/user.model";
 import { sendWelcomeEmail } from "@/helpers/mailsender";
+import { hashPassword, MakeOtp } from "@/helpers/userhelper";
 
 export async function POST(request) {
     try {
         console.log("Successfully hit registration");
+        
         await databaseConnection();
 
         // Get request body
@@ -15,7 +17,6 @@ export async function POST(request) {
             lastName,
             email,
             password,
-            confirmPassword,
         } = body;
 
         console.log("Request Body:", body);
@@ -30,7 +31,7 @@ export async function POST(request) {
         }
 
         const existingUser = await User.findOne({ email });
-         if (existingUser) {
+        if (existingUser) {
             return NextResponse.json(
                 {
                     success: false,
@@ -39,21 +40,31 @@ export async function POST(request) {
                 { status: 400 }
             );
         }
-
         console.log(existingUser)
+
+        const hashedPassword = await hashPassword(password);
+
+        // =====make otp========
+        const otp = await MakeOtp()
+        console.log(otp)
+
         // ===create user on db=====
         const user = await User.create({
             firstName,
             lastName,
             email,
-            password,
+            password:hashedPassword,
+            otp:otp
         });
-        if(user){
-            await sendWelcomeEmail(email,firstName);
+        
+
+        // =====sent email=====
+        if (user) {
+            await sendWelcomeEmail(email, firstName ,otp);
             console.log(user)
             console.log("mail sent")
         }
-
+  
         return NextResponse.json(
             {
                 success: true,

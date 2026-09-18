@@ -17,7 +17,7 @@ const Header = () => {
         console.log('Button clicked');
     }
     return (
-        <section className='z-50'>
+        <section className='z-50 sticky top-0'>
             <nav className='w-full px-5 py-1 bg-[var(--bg-color)]  flex justify-between items-center border-b border-amber-600/20'>
                 {/* logo wapper */}
                 <div className="logo text-xl text-[var(--text-color)]">

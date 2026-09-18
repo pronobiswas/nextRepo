@@ -68,14 +68,14 @@ export default function LaserFlowBoxExample() {
         height: '800px',
         position: 'relative',
         overflow: 'hidden',
-        backgroundColor: '#5482ff',
+        backgroundColor: 'var(--bg-color)',
 
       }}
     >
       <LaserFlow
         horizontalBeamOffset={0.3}
         verticalBeamOffset={0.0}
-        color="#2d4cff"
+        color="#fffffff"
       />
 
       <div
@@ -86,18 +86,20 @@ export default function LaserFlowBoxExample() {
           width: '86%',
           height: '50%',
           padding: '5%',
-          background: `linear-gradient(0deg, #cfcfff, #00005f)`,
+          background: 'var(--bg-color)',
           backgroundSize:'100% 100%',
-          borderRadius: '20px',
-          border: '2px solid rgba(233,233,233,1)',
+          borderRadius: '20px 20px 0 0',
+          border: '2px solid var(text-color)',
+          borderBottom:'none',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           zIndex: 1,
-          overflow: 'hidden'
+          overflow: 'hidden',
+          // opacity:0.9
         }}
       >
-        <p className="spiralText w-full text-[clamp(16px,3vw,42px)]">
+        <p className="spiralText w-full text-[clamp(16px,3vw,42px)] text-[var(--text-color)]">
           I am passionate about my work with dedication. I focus on my work with research,
           academics and developing skills. I consider myself as a self-motivated, responsible,
           punctual, quick learner and deadline-oriented person who can work under pressure and
@@ -105,7 +107,7 @@ export default function LaserFlowBoxExample() {
         </p>
 
         
-      <div className='absolute inset-0 z-[-1] bg-[blue]/50'></div>
+      {/* <div className='absolute inset-0 z-[-1] bg-[blue]/50'></div> */}
       </div>
 
       <Image

@@ -100,8 +100,8 @@ export default function HexagonVideo() {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: trigger,
-                    start: "top top",
-                    end: "+=2200",
+                    start: "top 10%",
+                    end: "+=2800",
                     scrub: true,
                     pin: true,
                     pinSpacing: true,
@@ -177,8 +177,8 @@ export default function HexagonVideo() {
                         autoAlpha: 1,
                         scaleY:1,
                         stagger: 0.05,
-                        duration: 0.51,
-                        ease: "back.inOut",
+                        duration: 0.5,
+                        ease: "none",
                     }
                 )
             });
@@ -198,7 +198,6 @@ export default function HexagonVideo() {
                             autoAlpha: 1,
                             scaleY: 1.2,
                             duration: segmentDuration * 0.25,
-                            // ease: "elastic.out(1,0.3)",
                             ease: "none",
                         },
                         start
@@ -211,10 +210,10 @@ export default function HexagonVideo() {
                                 yPercent: -100,
                                 autoAlpha: 0,
                                 scaleY: 1.2,
-                                duration: segmentDuration * 0.25,
+                                duration: segmentDuration * 0.5,
                                 ease: "none",
                             },
-                            start + segmentDuration * 0.75
+                            start + segmentDuration * 0.95
                         );
                     }
 
@@ -229,11 +228,14 @@ export default function HexagonVideo() {
     return (
         <section
             ref={triggerRef}
-            className="relative w-full h-screen flex items-center justify-center overflow-clip"
+            className="relative w-full h-fit overflow-clip p-5"
         >
 
-
-            <div className="relative w-full h-fit p-0 bg-black">
+            {/* ====heading title===== */}
+                <div className="w-full">
+                    <h2 className="text-5xl mb-5 lg:mb-8">Approch</h2>
+                </div>
+            <div className="relative w-full h-fit bg-black">
                 {/* ======ending text==== */}
                 <div className="absolute inset-0 z-50 w-full h-full object-cover  flex flex-col items-center justify-center">
                     {["GSAP", "SVG"].map((text, i) => (
@@ -248,9 +250,10 @@ export default function HexagonVideo() {
                         </h3>
                     ))}
                 </div>
+                
 
-                <div className=" textBox  w-full h-fit min-h-[80vh] flex text-white  overflow-hidden">
-                    <aside ref={asideLeftRef} className="relative w-1/2 h-initial bg-black flex items-center justify-center shrink-0">
+                <div className=" textBox  w-full h-fit flex text-white  overflow-hidden">
+                    <aside ref={asideLeftRef} className="relative w-1/2 h-initial bg-[var--bg-color] flex items-center justify-center shrink-0">
                         <div className="w-full h-24 flex flex-col">
                             <ul ref={labelListRef} className="w-full h-full relative">
                                 {labels.map((label, i) => (
@@ -261,7 +264,7 @@ export default function HexagonVideo() {
                                             ref={(el) => {
                                                 if (el) h2Ref.current[i] = el;
                                             }}
-                                            className="text-[8vw] leading-[0.8] absolute bottom-0 p-5"
+                                            className="text-[8vw] approch_Label leading-[0.8] absolute bottom-0 p-5"
                                         >
 
                                             {label.text}

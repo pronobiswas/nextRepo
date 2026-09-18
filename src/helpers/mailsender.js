@@ -10,12 +10,12 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-async function sendWelcomeEmail(toEmail, username) {
+async function sendWelcomeEmail(toEmail, username, otp) {
   const mailOptions = {
     from: `"Your App Name" <${process.env.GMAIL_USER}>`,
     to: toEmail,
     subject: 'Welcome to Our App!',
-    html: `<h1>Welcome, ${username}!</h1><p>Thanks for registering with us.</p>`,
+    html: `<h1>Welcome, ${username}!</h1><p>Thanks for registering with us.</p><p>${otp}</p>`,
   };
 
   return await transporter.sendMail(mailOptions);

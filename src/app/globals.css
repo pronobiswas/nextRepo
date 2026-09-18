@@ -5,18 +5,27 @@
   --foreground: #171717;
   --bg-color: #111111;
   --text-color: #ffffff;
+  --h1-color-1: #fceded;
+  --h1-color-2: #f5ffff;
+  --textInvert:#000000;
 }
 
 /* Dark theme */
 [data-theme="dark"] {
   --bg-color: #111111;
   --text-color: #ffffff;
+  --h1-color-1: #fceded;
+  --h1-color-2: #bdbcbc;
+  --textInvert:#ffffff;
 }
 
 /* White theme */
 [data-theme="white"] {
   --bg-color: #ffffff;
   --text-color: #000000;
+  --h1-color-1: #110000;
+  --h1-color-2: #053a3a;
+  --textInvert:#ffffff;
 }
 
 @theme inline {
@@ -37,6 +46,12 @@
     --testcolor4: #FF9FFC;
   }
 }
+@layer utilities {
+  .qualification_card{clip-path: polygon(0% 0%, 65% 0%,68% 10%, 95% 10%, 100% 100%, 0% 100%);}
+  .clip_trapezoid {
+    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+  }
+}
 
 
 body {
@@ -44,6 +59,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .myBtnBg {
   background: linear-gradient(#fdfcffa2 23%, #fdf8f8 63%, #eefdff9a 90%);
   background-size: 100% 100%;
@@ -52,16 +68,48 @@ body {
   box-shadow: inset -2px 0px 11px 5px #81807240;
 }
 
-.qualification_title{
+.qualification_title {
   width: 100%;
   max-width: fit-content;
   height: 100%;
-  /* background: url('./component/text_bg01.jpg'); */
   background: #ffffff;
-background: linear-gradient(50deg,rgba(255, 255, 255, 1) 32%, rgba(160, 186, 219, 1) 65%, rgba(31, 102, 255, 1) 81%, rgba(34, 7, 242, 1) 97%);
+  background: linear-gradient(50deg, var(--text-color) 32%, #00218d 85%, #2207f2 90%);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.h1_word_mask {
+    background-image: repeating-linear-gradient(45deg, var(--h1-color-2) 0, var(--h1-color-2) 1px, transparent 0, transparent 70%);
+	background-position: 0 0, 5px 5px;
+	background-size: 20px 20px;
+	background-color: var(--h1-color-1);	
+  background-repeat: repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  /* animation: patternZoom 2s ease-in-out alternate infinite; */
+
+}
+@keyframes patternZoom {
+  0% {
+    background-size: 20px 20px;
+  }
+  100% {
+    background-size: 15px 15px;
+  }
+}
+.approch_Label {
+  width: fit-content;
+  background-image: 
+    linear-gradient(#ccffbd23, #ffd1031a), 
+    url('../../public/bg_01.gif');
+  background-size: 100% 100%, 100% 100%;
+  background-clip: text;
+  -webkit-background-clip: text; /* Required for Safari & WebKit browsers */
+  color: transparent;
   -webkit-text-fill-color: transparent;
 }

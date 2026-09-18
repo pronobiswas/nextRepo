@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-
+import { aleaRNGFactory } from "number-generator";
 // Email validation
 export const emailRegex =
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -22,7 +22,19 @@ export function isValidPassword(password) {
 
 // Hash password
 export async function hashPassword(password) {
-    const saltRounds = 10;
-
-    return await bcrypt.hash(password, saltRounds);
+    try{
+        const saltRounds = 10;
+        return await bcrypt.hash(password, saltRounds);
+    }catch(error){
+        console.log("password encription error")
+    }
 }
+
+// OTP generator 
+export async function MakeOtp () {
+    try{
+        return  aleaRNGFactory(new Date()).uInt32().toString().slice(0,4);
+    }catch(error){
+        console.log("make otp error")
+    }
+};

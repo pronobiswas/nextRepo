@@ -83,9 +83,10 @@ const Qualification_commponent = () => {
 
   return (
     <>
-      <section id="qualificationSection" className="w-full h-full bg-black">
-        <div className="w-full py-20 px-5">
-          <h2 className="qualification_title text-5xl">
+      <section id="qualificationSection" className="w-full h-full bg-[var(--bg-color)]">
+        {/* ====wrapper=== */}
+        <div className="w-full py-10 md:py-20 lg:py-40 px-5">
+          <h2 className="qualification_title text-5xl leading-[1.52] bg-red-500">
             Education and Training
           </h2>
 
@@ -114,25 +115,27 @@ const Qualification_commponent = () => {
               {Object.entries(qualificationData).map(([key, value]) => (
                 <div
                   key={key}
-                  className="qualification-item relative w-full border border-slate-600 rounded-md overflow-hidden bg-black"
+                  className="qualification-item relative w-full border border-slate-600 rounded-md overflow-hidden bg-[var(--text-color)] qualification_card"
+
                 >
                   {/* Header */}
-                  <div className="qualification-header w-full py-6 flex items-center justify-center relative z-10">
-                    <h3 className="qualification-title text-3xl font-bold uppercase text-white">
+                  <div className="qualification-header w-full p-6 flex gap-5 items-end justify-start relative z-10">
+                    <div className='w-20 h-20 bg-green-700'></div>
+                    <h3 className="qualification-title text-3xl font-bold uppercase text-[var(--bg-color)]">
                       {key}
                     </h3>
                   </div>
 
-                  {/* Inner white box */}
-                  <div className="relative bg-white m-5 rounded-md overflow-hidden">
+                  {/* =====*/}
+                  <div className="relative  rounded-md overflow-clip">
                     {/* Trapezoid shape inside */}
-                    <div className="absolute inset-0 bg-gray-400 clip-trapezoid"></div>
+                    {/* <div className="absolute inset-0 bg-gray-800 clip_trapezoid"></div> */}
 
                     {/* Content list */}
-                    <ul className="relative z-10 p-5 text-black">
+                    <ul className="relative z-10 p-5 text-[var(--bg-color)]">
                       {Object.entries(value).map(([subKey, subValue]) => (
                         <li key={subKey} className="qualification-detail flex gap-5">
-                          <strong>{subKey}:</strong> {subValue}
+                          <strong className='capitalize'>{subKey}:</strong> {subValue}
                         </li>
                       ))}
                     </ul>

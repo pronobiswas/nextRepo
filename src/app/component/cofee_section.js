@@ -36,7 +36,8 @@ export default function ButtonSection({
     }, []);
 
     const handleEnter = useCallback(() => {
-        if (isHolding.current) return;
+        // if (isHolding.current) return;
+        console.log("mouse entered")
         const ctx = gsap.context(() => {
             gsap.to(".overlay", { width: "10%", duration: 0.3, ease: "linear" });
             gsap.to(".icon02", { opacity: 1, scale: 1, duration: 0.3, ease: "linear" });
@@ -95,13 +96,13 @@ export default function ButtonSection({
 
     return (
         <main className="h-full w-full font-josefin-slab" ref={rootRef} >
-            <section className="w-full bg-[#080808] p-5">
-                <div className="relative flex h-auto w-full flex-row items-center justify-between bg-[#fafff6] shadow-[0_0_10px_rgba(0,0,0,0.1)]">
-                    <h1 className=" z-[2] m-0 w-1/2 p-5 text-left text-[clamp(1.2rem,1.5vw,5rem)]">
+            <section className="w-full bg-[var(--text-color)] p-5">
+                <div className="relative flex h-auto w-full flex-row items-center justify-between bg-[var(--bg-color)]">
+                    <h1 className=" z-[2] m-0 w-1/2 p-5 text-left text-[clamp(1.2rem,1.5vw,5rem)] text-[var(--text-color)]">
                         {heading}
                     </h1>
 
-                    <div className="my-5 h-0.5 w-[clamp(50px,30%,200px)] bg-[#010d36]" />
+                    <div className="my-5 h-0.5 w-[clamp(50px,30%,200px)] bg-[var(--textInvert)]" />
 
                     <div
                         ref={buttonRef}
@@ -113,13 +114,13 @@ export default function ButtonSection({
                         onPointerEnter={handleEnter}
                         onPointerLeave={() => endHold(true)}
                         onPointerCancel={() => endHold(true)}
-                        className="group z-[9] flex w-[clamp(100px,18vw,160px)] cursor-pointer touch-none select-none items-center justify-between rounded-[35px] border border-white bg-black p-[10px] text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-white"
+                        className="group z-[9] flex w-[clamp(100px,18vw,160px)] cursor-pointer touch-none select-none items-center justify-between rounded-[35px] bg-[var(--text-color)] p-[10px] text-[var(--bg-color)]"
                     >
-                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-[var(--bg-color)]">
-                            <div className="icon01 absolute inset-0 flex items-center justify-center text-2xl font-bold text-black transition-transform duration-300 ease-in-out group-hover:-translate-y-[150%] group-hover:translate-x-full motion-reduce:transition-none">
+                        <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-[var(--bg-color)] text-[var(--bg-color)]">
+                            <div className="icon01 absolute inset-0 flex items-center justify-center text-2xl font-bold transition-transform duration-300 ease-in-out group-hover:-translate-y-[150%] group-hover:translate-x-full motion-reduce:transition-none">
                                 <span>↗</span>
                             </div>
-                            <div className="icon02 absolute inset-0 flex items-center justify-center text-xs font-bold text-black opacity-0">
+                            <div className="icon02 absolute inset-0 flex items-center justify-center text-xs font-bold  opacity-0">
                                 <span>●</span>
                             </div>
                         </div>
@@ -139,7 +140,7 @@ export default function ButtonSection({
                         </div>
                     </div>
 
-                    <div className="overlay pointer-events-none absolute left-0 top-0 z-[5] h-full w-0 bg-[#fafafa] mix-blend-difference" />
+                    <div className="overlay pointer-events-none absolute left-0 top-0 z-[5] h-full w-0 bg-white mix-blend-difference" />
                 </div>
             </section>
         </main>
