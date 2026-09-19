@@ -1,5 +1,5 @@
 'use client'
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 const HOLD_DURATION = 2; // seconds
 
@@ -14,15 +14,35 @@ export default function ButtonSection({
     const holdTimer = useRef(null);
     const startTime = useRef(0);
     const isHolding = useRef(false);
+    const [overlayWith, setOverlayWidth]= useState('0')
 
     // Build the hold timeline once, scoped to this component's DOM.
     useEffect(() => {
         const ctx = gsap.context(() => {
             holdTl.current = gsap
-                .timeline({ paused: true, defaults: { ease: "linear" } })
-                .to(".overlay", { width: "100%", duration: HOLD_DURATION }, 0)
-                .to(".icon02", { opacity: 1, scale: 15, duration: HOLD_DURATION }, 0)
-                .to(".btn_text_group", { y: -40, duration: 0.5 }, 0);
+            // .timeline({ paused: true, defaults: { ease: "linear" } })
+            // .to(".overlay", { width: "100%", duration: HOLD_DURATION }, 0)
+            // .to(".icon02", { opacity: 1, scale: 15, duration: HOLD_DURATION }, 0)
+            // .to(".btn_text_group", { y: -40, duration: 0.5 }, 0);
+            holdTl.current = gsap.timeline({ paused: true })
+                .fromTo(
+                    ".overlay",
+                    { width: "10%" },
+                    { width: "100%", duration: HOLD_DURATION }
+                )
+                .fromTo(
+                    ".btn_text_group",
+                    { y: -20 },
+                    { y: -40, duration: HOLD_DURATION },
+                    0
+                )
+                .fromTo(
+                    ".icon02",
+                    { opacity: 1, scale: 1 },
+                    { opacity: 1, scale: 15, duration: HOLD_DURATION },
+                    0
+                );
+
         }, rootRef);
 
         return () => {
@@ -36,14 +56,15 @@ export default function ButtonSection({
     }, []);
 
     const handleEnter = useCallback(() => {
-        // if (isHolding.current) return;
+        if (isHolding.current) return;
         console.log("mouse entered")
         const ctx = gsap.context(() => {
             gsap.to(".overlay", { width: "10%", duration: 0.3, ease: "linear" });
             gsap.to(".icon02", { opacity: 1, scale: 1, duration: 0.3, ease: "linear" });
             gsap.to(".btn_text_group", { y: -20, duration: 0.5 });
         }, rootRef);
-        ctx.kill(); // tweens keep running; the scope was only needed for selectors
+        // ctx.kill(); 
+        // tweens keep running; the scope was only needed for selectors
     }, []);
 
     const handleLeaveAnim = useCallback(() => {
@@ -52,7 +73,7 @@ export default function ButtonSection({
             gsap.to(".icon02", { opacity: 0, scale: 1, duration: 0.3 });
             gsap.to(".btn_text_group", { y: 0, duration: 0.5 });
         }, rootRef);
-        ctx.kill();
+        // ctx.kill();
     }, []);
 
     const endHold = useCallback(
@@ -103,7 +124,7 @@ export default function ButtonSection({
                     </h1>
 
                     <div className="my-5 h-0.5 w-[clamp(50px,30%,200px)] bg-[var(--textInvert)]" />
-
+                    {/* ====go button======= */}
                     <div
                         ref={buttonRef}
                         role="button"
@@ -117,16 +138,16 @@ export default function ButtonSection({
                         className="group z-[9] flex w-[clamp(100px,18vw,160px)] cursor-pointer touch-none select-none items-center justify-between rounded-[35px] bg-[var(--text-color)] p-[10px] text-[var(--bg-color)]"
                     >
                         <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-[var(--bg-color)] text-[var(--bg-color)]">
-                            <div className="icon01 absolute inset-0 flex items-center justify-center text-2xl font-bold transition-transform duration-300 ease-in-out group-hover:-translate-y-[150%] group-hover:translate-x-full motion-reduce:transition-none">
+                            <div className="icon01 absolute inset-0 flex items-center justify-center text-2xl font-bold transition-transform duration-300 ease-in-out group-hover:-translate-y-[150%] group-hover:translate-x-full motion-reduce:transition-none text-[var(--text-color)]">
                                 <span>↗</span>
                             </div>
-                            <div className="icon02 absolute inset-0 flex items-center justify-center text-xs font-bold  opacity-0">
+                            <div className="icon02 absolute inset-0 flex items-center justify-center text-xs font-bold  opacity-0 text-[var(--text-color)]">
                                 <span>●</span>
                             </div>
                         </div>
 
-                        <div className="flex h-5 w-[110px] flex-col items-start justify-start overflow-hidden">
-                            <div className="btn_text_group">
+                        <div className="flex h-5 w-[110px] flex-col items-start justify-start overflow-clip ">
+                            <div className="btn_text_group ">
                                 <div className="pl-[5px] text-left text-base leading-5">
                                     <em>lets go</em>
                                 </div>
@@ -140,7 +161,7 @@ export default function ButtonSection({
                         </div>
                     </div>
 
-                    <div className="overlay pointer-events-none absolute left-0 top-0 z-[5] h-full w-0 bg-white mix-blend-difference" />
+                    <div className='overlay pointer-events-none absolute left-0 top-0 z-[5] h-full w- {overlayWith} bg-white mix-blend-difference' />
                 </div>
             </section>
         </main>
