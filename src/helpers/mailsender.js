@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-async function sendWelcomeEmail(toEmail, username, otp) {
+async function sendWelcomeEmail(toEmail, username, otp, verificationlink="") {
   const mailOptions = {
     from: `"Your App Name" <${process.env.GMAIL_USER}>`,
     to: toEmail,

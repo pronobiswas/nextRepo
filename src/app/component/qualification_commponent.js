@@ -85,7 +85,7 @@ const Qualification_commponent = () => {
     <>
       <section id="qualificationSection" className="w-full h-full bg-[var(--bg-color)]">
         {/* ====wrapper=== */}
-        <div className="w-full py-10 md:py-20 lg:py-40 px-5">
+        <div className="w-full px-5 py-10 md:py-12 lg:pt-40">
           <h2 className="qualification_title text-5xl leading-[1.52] bg-red-500">
             Education and Training
           </h2>
@@ -135,7 +135,8 @@ const Qualification_commponent = () => {
                     <ul className="relative z-10 p-5 text-[var(--bg-color)]">
                       {Object.entries(value).map(([subKey, subValue]) => (
                         <li key={subKey} className="qualification-detail flex gap-5">
-                          <strong className='capitalize'>{subKey}:</strong> {subValue}
+                          <span className='capitalize text-xs tracking-widest '>{subKey}:</span> 
+                          <span className='font-josefin-slab'>{subValue}</span>
                         </li>
                       ))}
                     </ul>

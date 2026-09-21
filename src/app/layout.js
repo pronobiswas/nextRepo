@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono,Josefin_Slab, } from "next/font/google";
+import { Geist, Geist_Mono, Josefin_Slab, Oswald, } from "next/font/google";
 import "./globals.css";
 import Header from "./component/header";
 
@@ -10,6 +10,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+const oswald = Oswald({
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700"],
+  variable: "--font-oswald",
 });
 const josefinSlab = Josefin_Slab({
   subsets: ["latin"],
@@ -26,7 +31,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${josefinSlab.variable}  antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} ${josefinSlab.variable}  antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Header />

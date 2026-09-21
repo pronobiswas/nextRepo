@@ -7,7 +7,9 @@
   --text-color: #ffffff;
   --h1-color-1: #fceded;
   --h1-color-2: #f5ffff;
-  --textInvert:#000000;
+  --textInvert: #000000;
+  --headerBg: #00000083;
+  --rotateRordercolor: conic-gradient(#0066ff2a ,#003c755e ,blue);
 }
 
 /* Dark theme */
@@ -16,7 +18,9 @@
   --text-color: #ffffff;
   --h1-color-1: #fceded;
   --h1-color-2: #bdbcbc;
-  --textInvert:#ffffff;
+  --textInvert: #ffffff;
+  --headerBg: #000000a9;
+  --rotateRordercolor: conic-gradient(#ffffff ,#6db8ff ,blue);
 }
 
 /* White theme */
@@ -25,7 +29,9 @@
   --text-color: #000000;
   --h1-color-1: #110000;
   --h1-color-2: #053a3a;
-  --textInvert:#ffffff;
+  --textInvert: #ffffff;
+  --headerBg: #ffffffb2;
+  --rotateRordercolor: conic-gradient(#a8a8a8 ,#39489c ,blue);
 }
 
 @theme inline {
@@ -34,6 +40,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-josefin-slab: var(--next-font-josefin-slab);
+  --font-oswald: var(--font-oswald);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -46,8 +53,12 @@
     --testcolor4: #FF9FFC;
   }
 }
+
 @layer utilities {
-  .qualification_card{clip-path: polygon(0% 0%, 65% 0%,68% 10%, 95% 10%, 100% 100%, 0% 100%);}
+  .qualification_card {
+    clip-path: polygon(0% 0%, 65% 0%, 68% 10%, 95% 10%, 100% 100%, 0% 100%);
+  }
+
   .clip_trapezoid {
     clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
   }
@@ -80,11 +91,12 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .h1_word_mask {
-    background-image: repeating-linear-gradient(45deg, var(--h1-color-2) 0, var(--h1-color-2) 1px, transparent 0, transparent 70%);
-	background-position: 0 0, 5px 5px;
-	background-size: 20px 20px;
-	background-color: var(--h1-color-1);	
+  background-image: repeating-linear-gradient(45deg, var(--h1-color-2) 0, var(--h1-color-2) 1px, transparent 0, transparent 70%);
+  background-position: 0 0, 5px 5px;
+  background-size: 20px 20px;
+  background-color: var(--h1-color-1);
   background-repeat: repeat;
   background-clip: text;
   -webkit-background-clip: text;
@@ -94,22 +106,57 @@ body {
   /* animation: patternZoom 2s ease-in-out alternate infinite; */
 
 }
+
 @keyframes patternZoom {
   0% {
     background-size: 20px 20px;
   }
+
   100% {
     background-size: 15px 15px;
   }
 }
+
 .approch_Label {
   width: fit-content;
-  background-image: 
-    linear-gradient(#ccffbd23, #ffd1031a), 
+  background-image:
+    linear-gradient(#ccffbd23, #ffd1031a),
     url('../../public/bg_01.gif');
   background-size: 100% 100%, 100% 100%;
   background-clip: text;
-  -webkit-background-clip: text; /* Required for Safari & WebKit browsers */
+  -webkit-background-clip: text;
+  /* Required for Safari & WebKit browsers */
   color: transparent;
   -webkit-text-fill-color: transparent;
+}
+
+.servicesCard {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.servicesCard::after {
+  content: '';
+  position: absolute;
+  width: 300%;
+  height: 400%;
+  top: 50%;
+  left: 50%;
+  background: var(--rotateRordercolor);
+  transform-origin: center center;
+  transform: translate(-50%, -50%);
+  animation: borderAnim 5.5s cubic-bezier(1, 1, 1, 1) infinite;
+  z-index: -1;
+  border: 3px solid transparent;
+}
+
+@keyframes borderAnim {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }

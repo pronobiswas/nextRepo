@@ -38,7 +38,7 @@ export default function ButtonSection({
                 )
                 .fromTo(
                     ".icon02",
-                    { opacity: 1, scale: 1 },
+                    { opacity: 1, scale: 0.5 },
                     { opacity: 1, scale: 15, duration: HOLD_DURATION },
                     0
                 );
@@ -149,10 +149,10 @@ export default function ButtonSection({
                         <div className="flex h-5 w-[110px] flex-col items-start justify-start overflow-clip ">
                             <div className="btn_text_group ">
                                 <div className="pl-[5px] text-left text-base leading-5">
-                                    <em>lets go</em>
+                                    <em>Grab it</em>
                                 </div>
                                 <div className="pl-[5px] text-left text-base leading-5">
-                                    <em>press and hold</em>
+                                    <em>Press and Hold</em>
                                 </div>
                                 <div className="pl-[5px] text-left text-base leading-5">
                                     <em>Almost there</em>

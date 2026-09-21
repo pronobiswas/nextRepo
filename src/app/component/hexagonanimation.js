@@ -226,16 +226,17 @@ export default function HexagonVideo() {
     }, []);
 
     return (
+        
         <section
             ref={triggerRef}
-            className="relative w-full h-fit overflow-clip p-5"
+            className="relative w-full h-fit overflow-hidden p-5"
         >
 
             {/* ====heading title===== */}
                 <div className="w-full">
                     <h2 className="text-5xl mb-5 lg:mb-8">Approch</h2>
                 </div>
-            <div className="relative w-full h-fit bg-black">
+            <div className="relative w-full h-fit  bg-black">
                 {/* ======ending text==== */}
                 <div className="absolute inset-0 z-50 w-full h-full object-cover  flex flex-col items-center justify-center">
                     {["GSAP", "SVG"].map((text, i) => (
@@ -252,8 +253,8 @@ export default function HexagonVideo() {
                 </div>
                 
 
-                <div className=" textBox  w-full h-fit flex text-white  overflow-hidden">
-                    <aside ref={asideLeftRef} className="relative w-1/2 h-initial bg-[var--bg-color] flex items-center justify-center shrink-0">
+                <div className=" textBox  w-full h-fit flex flex-col lg:flex-row text-white  overflow-hidden">
+                    <aside ref={asideLeftRef} className="relative w-full lg:w-1/2 h-initial bg-[var--bg-color] flex items-center justify-center shrink-0">
                         <div className="w-full h-24 flex flex-col">
                             <ul ref={labelListRef} className="w-full h-full relative">
                                 {labels.map((label, i) => (
@@ -274,7 +275,7 @@ export default function HexagonVideo() {
                             </ul>
                         </div>
                     </aside>
-                    <aside ref={asideRightRef} className="SvgBox w-1/2 h-initial bg-black flex items-center justify-center z-40 relative p-0">
+                    <aside ref={asideRightRef} className="SvgBox w-full lg:w-1/2 h-initial bg-black flex items-center justify-center z-40 relative p-0">
                         <svg ref={svgRef} width="100%" height="100%" viewBox="0 0 968 968" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full max-w-xl p-0">
 
                             <defs>
@@ -393,5 +394,6 @@ export default function HexagonVideo() {
             </div>
 
         </section>
+   
     );
 }

@@ -10,6 +10,7 @@ import LaserFlowBoxExample from './three_component/laserflowwithbg'
 import Qualification_commponent from './qualification_commponent'
 import HexagonVideo from './hexagonanimation'
 import ButtonSection from "./cofee_section";
+import WayToGo from "./wayToGo";
 // import LaserFlow from './laserflow'
 
 
@@ -47,7 +48,7 @@ const Maincomponent = () => {
 
         getUsers();
     }, []);
-   
+
 
 
 
@@ -75,6 +76,12 @@ const Maincomponent = () => {
                 </div>
             </div>
             <HexagonVideo />
+            <WayToGo />
+            {/* <section className="w-full h-screen bg-green-700">
+                <div classname="w-full">
+                    <h1>extra row</h1>
+                </div>
+            </section> */}
         </div>
     )
 }

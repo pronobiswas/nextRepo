@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { databaseConnection } from "@/db/dbconnection";
 import User from "@/model/user.model";
 import { sendWelcomeEmail } from "@/helpers/mailsender";
-import { hashPassword, MakeOtp } from "@/helpers/userhelper";
+import { hashPassword, MakeOtp, makeVerificationLink } from "@/helpers/userhelper";
 
 export async function POST(request) {
     try {
@@ -56,14 +56,18 @@ export async function POST(request) {
             password:hashedPassword,
             otp:otp
         });
+
+        const verificatioLink = await makeVerificationLink(user.email, user.id);
+
         
 
         // =====sent email=====
         if (user) {
-            await sendWelcomeEmail(email, firstName ,otp);
+            await sendWelcomeEmail(email, firstName ,otp,verificatioLink);
             console.log(user)
             console.log("mail sent")
         }
+
   
         return NextResponse.json(
             {
@@ -73,6 +77,7 @@ export async function POST(request) {
                     firstName,
                     lastName,
                     email,
+                    verificatioLink,
                 },
             },
             { status: 201 }
