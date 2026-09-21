@@ -68,8 +68,8 @@ const Header = () => {
 
 
 
-                    <button className='hidden md:block myBtnBg font-josefin text-black text-xl px-5 py-2 cursor-pointer' onClick={clickHandler1}>
-                        Connect
+                    <button className='hidden md:block myBtnBg font-josefin text-black text-xl font-josefin-slab px-5 py-2 cursor-pointer' onClick={clickHandler1}>
+                        Buy me a Cofee
                     </button>
                 </div>
 
