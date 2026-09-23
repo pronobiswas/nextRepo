@@ -255,7 +255,7 @@ const DirectionalScrollCard = () => {
                     (row, rowIndex) => (
                         <div
                             key={rowIndex}
-                            className="relative mb-5 overflow-hidden py-2.5"
+                            className="relative overflow-hidden py-3"
                         >
                             <div
                                 ref={(element) => {
@@ -263,7 +263,7 @@ const DirectionalScrollCard = () => {
                                         rowIndex
                                     ] = element;
                                 }}
-                                className="flex  gap-5"
+                                className="flex gap-3"
                             >
                                 {row.items.map(
                                     (
@@ -272,24 +272,9 @@ const DirectionalScrollCard = () => {
                                     ) => (
                                         <div
                                             key={index}
-                                            className="
-                                                flex
-                                                h-fit
-                                                w-fit
-                                                shrink-0
-                                                cursor-pointer
-                                                items-center
-                                                justify-center
-                                                rounded-2xl
-                                                border-2
-                                                border-gray-400
-                                                p-5
-                                                text-center
-                                                text-[var(--text-color)]
-                                                cursor-target
-                                            "
+                                            className="flex h-fit w-fit shrink-0 cursor-pointer items-center justify-center rounded-md border border-gray-400 px-2 py-1 md:px-4 lg:py-3 md:px-5 text-center text-[var(--text-color)] cursor-target"
                                         >
-                                            <span className="text-lg font-medium">
+                                            <span className="text-base lg:text-lg font-medium capitalize">
                                                 {item}
                                             </span>
                                         </div>

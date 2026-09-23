@@ -8,7 +8,7 @@
   --h1-color-1: #fceded;
   --h1-color-2: #f5ffff;
   --textInvert: #000000;
-  --headerBg: #00000083;
+  --headerBg: linear-gradient(45deg,#ffffff ,#e6f7ff8e ,#ffffff2a);
   --rotateRordercolor: conic-gradient(#0066ff2a ,#003c755e ,blue);
 }
 
@@ -19,7 +19,7 @@
   --h1-color-1: #fceded;
   --h1-color-2: #bdbcbc;
   --textInvert: #ffffff;
-  --headerBg: #000000a9;
+  --headerBg: linear-gradient(45deg,#000000c9 ,#00000059 ,#0000000e);
   --rotateRordercolor: conic-gradient(#ffffff ,#6db8ff ,blue);
 }
 
@@ -30,7 +30,7 @@
   --h1-color-1: #110000;
   --h1-color-2: #053a3a;
   --textInvert: #ffffff;
-  --headerBg: #ffffffb2;
+  --headerBg: linear-gradient(45deg,#ffffffe1 ,#ffffff88 ,#ffffff0e);
   --rotateRordercolor: conic-gradient(#a8a8a8 ,#39489c ,blue);
 }
 

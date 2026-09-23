@@ -3,11 +3,12 @@
 import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
 import ThemeTogleButton from './theme_togle_button';
+// import gsap from 'gsap';
 
 const Header = () => {
-    const [isOpen,setIsOpen] = useState(false)
-    const mobileMenuRef= useRef(null);
-    const mobileMenuButtonRef= useRef(null);
+    const [isOpen, setIsOpen] = useState(false)
+    const mobileMenuRef = useRef(null);
+    const mobileMenuButtonRef = useRef(null);
     const menulist = [
         { label: 'Home', href: '/' },
         { label: 'About', href: '/about' },
@@ -16,7 +17,7 @@ const Header = () => {
         { label: 'Reference', href: '/reference' },
     ];
 
-    const handleClick = ()=>{
+    const handleClick = () => {
         setIsOpen(!isOpen)
     }
 
@@ -26,12 +27,14 @@ const Header = () => {
     console.log(isOpen)
     return (
         <section className='z-50 sticky top-0 overflow-x-clip'>
-            <nav className='w-full px-5 py-1 bg-[var(--headerBg)] backdrop-blur-[10px] flex justify-between items-center border-b border-amber-600/20 relative '>
+            <nav className='w-full px-5 py-1 backdrop-blur-[10px] flex justify-between items-center border-b border-amber-600/20 relative '
+                style={{ background: 'var(--headerBg)' }}
+            >
                 {/* logo wapper */}
                 <Link href='/'>
-                <div className="logo text-xl text-[var(--text-color)]">
-                    pronob
-                </div>
+                    <div className="logo text-3xl text-[var(--text-color)] font-bold">
+                        <span>&lt;&#123;p/b&#125;&gt;</span>
+                    </div>
                 </Link>
                 {/* ====menu wrapper== */}
                 <div className='hidden lg:block'>
@@ -58,10 +61,23 @@ const Header = () => {
 
                     {/* =====mobile menu=== */}
                     <div onClick={handleClick} ref={mobileMenuButtonRef} className='w-fit h-fit block lg:hidden'>
-                        <div className='iconDiv w-12 flex flex-col gap-1'>
-                            <div className='w-full h-1 bg-[var(--text-color)]'></div>
-                            <div className='w-full h-1 bg-[var(--text-color)]'></div>
-                            <div className='w-full h-1 bg-[var(--text-color)]'></div>
+                        <div
+                            className="iconDiv relative w-12 h-8 cursor-pointer flex items-center justify-center"
+                        >
+                            <div
+                                className={`absolute w-full h-1 bg-[var(--text-color)] rounded-md transition-all duration-300 ${isOpen ? "rotate-45" : "-translate-y-3"
+                                    }`}
+                            />
+
+                            <div
+                                className={`absolute w-full h-1 bg-[var(--text-color)] rounded-md transition-all duration-300 ${isOpen ? "opacity-0" : "opacity-100"
+                                    }`}
+                            />
+
+                            <div
+                                className={`absolute w-full h-1 bg-[var(--text-color)] rounded-md transition-all duration-300 ${isOpen ? "-rotate-45" : "translate-y-3"
+                                    }`}
+                            />
                         </div>
 
                     </div>
@@ -73,7 +89,10 @@ const Header = () => {
                     </button>
                 </div>
 
-                <div ref={mobileMenuRef} className={`absolute top-16 ${isOpen?'right-0':'right-[-100%]'} w-1/2 h-full min-h-screen bg-[var(--bg-color)] p-5`}>
+
+                {/* &&&&&&&&&&&&&&  mobile menu  &&&&&&&&&&&&&&&&&&&&& */}
+
+                <div ref={mobileMenuRef} className={`absolute top-16 ${isOpen ? 'right-0' : 'right-[-100%]'} w-1/2 h-full min-h-screen bg-[var(--bg-color)] p-5`}>
                     <ul className='flex flex-col gap-5 text-gray-200 font-oswald font-light'>
                         {menulist.map((item) => (
                             <li key={item.href} className='menuItem relative group transition-all duration-300 '>

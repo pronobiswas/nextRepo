@@ -69,8 +69,9 @@ const Qualification_commponent = () => {
           scrollTrigger: {
             trigger: "#qualificationSection",
             start: "top 80%",
-            end: "bottom 95%",
+            end: "+=200",
             scrub: true,
+            // markers:true,
           }
         }
       );
@@ -86,29 +87,9 @@ const Qualification_commponent = () => {
       <section id="qualificationSection" className="w-full h-full bg-[var(--bg-color)]">
         {/* ====wrapper=== */}
         <div className="w-full px-5 py-10 md:py-12 lg:pt-40">
-          <h2 className="qualification_title text-5xl leading-[1.52] bg-red-500">
+          <h2 className="qualification_title text-2xl md:text-5xl leading-[1.52] bg-red-500">
             Education and Training
           </h2>
-
-          {/* <div className="w-full flex justify-between gap-5 mt-12">
-            <div className='qualification-grid w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
-              {Object.entries(qualificationData).map(([key, value]) => (
-                <div key={key} className='qualification-item w-full border border-red-600 overflow-clip rounded-md'>
-                  <div className='qualification-header w-full h-fit py-8 bg-black/0 flex items-center justify-center'>
-                    <h3 className='qualification-title text-3xl font-bold uppercase'>{key}</h3>
-                  </div>
-                  <ul className='p-5 relative'>
-                    <div className="absolute w-full h-full top-0 left-0 bg-gray-900  rotate-z-45"></div>
-                    {Object.entries(value).map(([subKey, subValue]) => (
-                      <li key={subKey} className='qualification-detail flex gap-5'>
-                        <strong>{subKey}:</strong> {subValue}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div> */}
 
           <div className="w-full flex justify-between gap-5 mt-12">
             <div className="qualification-grid w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -127,12 +108,12 @@ const Qualification_commponent = () => {
                   </div>
 
                   {/* =====*/}
-                  <div className="relative  rounded-md overflow-clip">
+                  <div className="w-full">
                     {/* Trapezoid shape inside */}
                     {/* <div className="absolute inset-0 bg-gray-800 clip_trapezoid"></div> */}
 
                     {/* Content list */}
-                    <ul className="relative z-10 p-5 text-[var(--bg-color)]">
+                    <ul className="w-full flex flex-col gap-2 p-5 text-[var(--bg-color)]">
                       {Object.entries(value).map(([subKey, subValue]) => (
                         <li key={subKey} className="qualification-detail flex gap-5">
                           <span className='capitalize text-xs tracking-widest '>{subKey}:</span> 
